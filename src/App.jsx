@@ -1,28 +1,18 @@
 import { useState } from "react";
 import "./App.css";
 
-/*
-============================================================
-EDITABLE EVENT INFORMATION
-============================================================
-Update these values once the final dates, pricing,
-registration URL, and other clinic details are confirmed.
-*/
-
-const EVENT = {
-  name: "Skills Combine Clinic",
-  location: "Wings Arena",
-  audience: "Peewee & Bantam",
-  registrationUrl: "#registration",
-};
+const REGISTRATION_URL =
+  "https://tms.ezfacility.com/OnlineRegistrations/Register.aspx?CompanyID=8390&GroupID=4099945";
 
 const BASE_URL = import.meta.env.BASE_URL;
 
 const ASSETS = {
   wingsLogo: `${BASE_URL}wings-logo.png`,
   driveLogo: `${BASE_URL}drive-logo.png`,
-  sensors: `${BASE_URL}drive-sensors.jpg`,
-  qrCode: `${BASE_URL}registration-qr.png`,
+  sensors: `${BASE_URL}drive-sensors.png`,
+  sensorsTwo: `${BASE_URL}sensor-two.png`,
+  sensorsThree: `${BASE_URL}sensor-three.png`,
+  qrCode: `${BASE_URL}QR_Registration.png`,
   dataView: `${BASE_URL}data-view.png`,
 };
 
@@ -125,20 +115,20 @@ const schedules = [
     sessions: [
       {
         day: "Day 1",
-        date: "Date TBD",
-        time: "Time TBD",
+        date: "Sat 9/5",
+        time: "10:30am–11:30am",
         type: "On-Ice Testing",
       },
       {
         day: "Day 2",
-        date: "Date TBD",
-        time: "Time TBD",
+        date: "Sun 9/6",
+        time: "10:30am–11:30am",
         type: "Skills + Analysis",
       },
       {
         day: "Day 3",
-        date: "Date TBD",
-        time: "Time TBD",
+        date: "Mon 9/7",
+        time: "10:30am–11:30am",
         type: "Performance Session",
       },
     ],
@@ -150,39 +140,35 @@ const schedules = [
     sessions: [
       {
         day: "Day 1",
-        date: "Date TBD",
-        time: "Time TBD",
+        date: "Sat 9/5",
+        time: "11:40am–12:40pm",
         type: "On-Ice Testing",
       },
       {
         day: "Day 2",
-        date: "Date TBD",
-        time: "Time TBD",
+        date: "Sun 9/6",
+        time: "11:40am–12:40pm",
         type: "Skills + Analysis",
       },
       {
         day: "Day 3",
-        date: "Date TBD",
-        time: "Time TBD",
+        date: "Mon 9/7",
+        time: "11:40am–12:40pm",
         type: "Performance Session",
       },
     ],
   },
 ];
 
-const pricing = [
-  {
-    division: "Peewee",
-    age: "U12",
-    price: "TBD",
-    description: "Full three-day Labor Day Skills Combine Clinic.",
-  },
-  {
-    division: "Bantam",
-    age: "U14",
-    price: "TBD",
-    description: "Full three-day Labor Day Skills Combine Clinic.",
-  },
+const pricing = {
+  division: "Peewee & Bantam",
+  age: "U12 & U14",
+};
+
+const pricingTiers = [
+  { label: "1 Day", price: "$90" },
+  { label: "2 Days", price: "$160" },
+  { label: "3 Days", price: "$210" },
 ];
 
 function AssetImage({
@@ -245,6 +231,14 @@ function App() {
       <section className="hero" id="top">
         <div className="hero-layout page-width">
           <div className="hero-copy">
+            <AssetImage
+              src={ASSETS.wingsLogo}
+              alt="Wings Arena"
+              placeholderTitle="Wings Arena"
+              placeholderSubtitle="Logo"
+              className="hero-logo"
+            />
+
             <div className="hero-eyebrow">
               Labor Day Weekend
             </div>
@@ -270,17 +264,12 @@ function App() {
             <div className="hero-actions">
               <a
                 className="primary-button"
-                href="#registration"
+                href={REGISTRATION_URL}
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                Registration Coming Soon
+                Register Now
                 <ArrowIcon />
-              </a>
-
-              <a
-                className="text-button"
-                href="#analytics"
-              >
-                See How the Data Works
               </a>
             </div>
           </div>
@@ -288,7 +277,6 @@ function App() {
           <div className="analytics-preview">
             <div className="analytics-preview-top">
               <div>
-                <span>Performance Analysis</span>
                 <h2>Your Game. Measured.</h2>
               </div>
             </div>
@@ -296,17 +284,14 @@ function App() {
             <div className="preview-metrics">
               <div>
                 <strong>Speed</strong>
-                <span>Measured</span>
               </div>
 
               <div>
                 <strong>Acceleration</strong>
-                <span>Measured</span>
               </div>
 
               <div>
                 <strong>Movement</strong>
-                <span>Measured</span>
               </div>
             </div>
 
@@ -317,12 +302,6 @@ function App() {
               placeholderSubtitle="Add your DRIVE dashboard screenshot here"
               className="hero-analytics-image"
             />
-
-            <p className="preview-note">
-              Sample visualization. Final player reports will
-              reflect the actual DRIVE metrics collected
-              during the clinic.
-            </p>
           </div>
         </div>
       </section>
@@ -351,75 +330,6 @@ function App() {
       </section>
 
       {/* ==================================================
-          INTRO
-      ================================================== */}
-
-      <section className="intro-section section-spacing">
-        <div className="page-width intro-layout">
-          <div className="section-heading">
-            <h2>
-              More than a
-              <br />
-              skills clinic.
-            </h2>
-          </div>
-
-          <div className="intro-copy">
-            <p className="lead-copy">
-              The Labor Day Skills Combine Clinic adds
-              objective performance data to the traditional
-              hockey clinic experience.
-            </p>
-
-            <div className="clinic-format">
-              <h3>3-Day Clinic Format</h3>
-
-              <p className="clinic-format-times">
-                <strong>Ice Times (all 3 days):</strong>{" "}
-                PeeWee 10:30–11:30am | Bantam
-                11:40am–12:40pm
-              </p>
-
-              <div className="clinic-format-days">
-                <div className="clinic-format-day">
-                  <span>Day 1</span>
-
-                  <p>
-                    <strong>Sat 9/5:</strong> Combine
-                    testing with data collection
-                  </p>
-                </div>
-
-                <div className="clinic-format-day">
-                  <span>Day 2</span>
-
-                  <p>
-                    <strong>Sun 9/6:</strong> Skills
-                    practice with data collection
-                  </p>
-                </div>
-
-                <div className="clinic-format-day">
-                  <span>Day 3</span>
-
-                  <p>
-                    <strong>Mon 9/7:</strong> Personalized
-                    data report from Days 1 and 2, plus
-                    skills practice and game play
-                  </p>
-                </div>
-              </div>
-
-              <p className="clinic-format-note">
-                Sign up for 1, 2, or 3 days. Must attend
-                Day 1 or Day 2 for data access.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ==================================================
           ANALYTICS
       ================================================== */}
 
@@ -436,13 +346,6 @@ function App() {
                 <span>By the Numbers.</span>
               </h2>
             </div>
-
-            <p>
-              DRIVE performance sensors add another layer to
-              the clinic by measuring what happens during
-              testing and translating it into useful player
-              information.
-            </p>
           </div>
 
           <div className="sensor-feature">
@@ -452,7 +355,23 @@ function App() {
                 alt="DRIVE performance sensors"
                 placeholderTitle="Sensor Image"
                 placeholderSubtitle="Add your DRIVE sensor photo here"
-                className="sensor-photo"
+                className="sensor-photo sensor-photo-1"
+              />
+
+              <AssetImage
+                src={ASSETS.sensorsTwo}
+                alt="DRIVE performance sensors"
+                placeholderTitle="Sensor Image"
+                placeholderSubtitle="Add your DRIVE sensor photo here"
+                className="sensor-photo sensor-photo-2"
+              />
+
+              <AssetImage
+                src={ASSETS.sensorsThree}
+                alt="DRIVE performance sensors"
+                placeholderTitle="Sensor Image"
+                placeholderSubtitle="Add your DRIVE sensor photo here"
+                className="sensor-photo sensor-photo-3"
               />
             </div>
 
@@ -471,22 +390,13 @@ function App() {
                 output throughout the clinic.
               </p>
 
-              <div className="sensor-data-strip">
-                <div>
-                  <span>Capture</span>
-                  <strong>Player Movement</strong>
-                </div>
-
-                <div>
-                  <span>Measure</span>
-                  <strong>Performance</strong>
-                </div>
-
-                <div>
-                  <span>Review</span>
-                  <strong>Results</strong>
-                </div>
-              </div>
+              <p>
+                Fixed sensor nodes mounted around the rink
+                track player position and movement in real
+                time, working alongside the wearable sensors
+                to build a complete picture of what happens
+                on the ice.
+              </p>
             </div>
           </div>
 
@@ -570,20 +480,8 @@ function App() {
         id="schedule"
       >
         <div className="page-width">
-          <div className="split-section-heading">
-            <div>
-              <h2>
-                Peewee & Bantam
-                <br />
-                Schedule
-              </h2>
-            </div>
-
-            <p>
-              Exact Labor Day weekend dates and session
-              times will be added here once the final ice
-              schedule is confirmed.
-            </p>
+          <div className="section-heading">
+            <h2>Peewee & Bantam Schedule</h2>
           </div>
 
           <div className="schedule-grid">
@@ -600,7 +498,7 @@ function App() {
                   </div>
 
                   <span className="schedule-status">
-                    Schedule TBD
+                    Labor Day Weekend
                   </span>
                 </div>
 
@@ -640,32 +538,31 @@ function App() {
       >
         <div className="page-width">
           <div className="center-section-heading">
-            <h2>Clinic Pricing</h2>
-
-            <p>
-              Pricing will be added once final registration
-              details are confirmed.
-            </p>
+            <h2>Pricing & Registration</h2>
           </div>
 
           <div className="pricing-grid">
-            {pricing.map((option) => (
-              <article
-                className="price-card"
-                key={option.division}
-              >
-                <div className="price-card-top">
-                  <span>{option.age}</span>
+            <article className="price-card">
+              <div className="price-card-top">
+                <span>{pricing.age}</span>
 
-                  <h3>{option.division}</h3>
+                <h3>{pricing.division}</h3>
+              </div>
 
-                  <p>{option.description}</p>
-                </div>
+              <div className="price-tiers">
+                {pricingTiers.map((tier) => (
+                  <div
+                    className="price-tier"
+                    key={tier.label}
+                  >
+                    <strong>{tier.price}</strong>
 
-                <div className="price">
-                  <strong>{option.price}</strong>
-                </div>
+                    <span>{tier.label}</span>
+                  </div>
+                ))}
+              </div>
 
+              <div className="price-card-body">
                 <div className="price-includes">
                   <h4>Clinic Includes</h4>
 
@@ -676,93 +573,31 @@ function App() {
                   <p>Player data provided on Day 3</p>
                 </div>
 
-                <a
-                  href="#registration"
-                  className="price-button"
-                >
-                  Registration Coming Soon
-                  <ArrowIcon />
-                </a>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+                <div className="price-qr">
+                  <h4>Scan to Register</h4>
 
-      {/* ==================================================
-          REGISTRATION
-      ================================================== */}
-
-      <section
-        className="registration-section section-spacing"
-        id="registration"
-      >
-        <div className="page-width registration-layout">
-          <div className="registration-copy">
-            <h2>
-              Labor Day
-              <br />
-              Skills Combine
-            </h2>
-
-            <p>
-              Registration details for the Skills Combine
-              Clinic will be available here. Scan the QR
-              code or use the registration button once
-              enrollment opens.
-            </p>
-
-            <div className="registration-tags">
-              <span>Peewee</span>
-              <span>Bantam</span>
-              <span>3-Day Clinic</span>
-            </div>
-
-            <a
-              href={EVENT.registrationUrl}
-              className="registration-button"
-            >
-              Registration Link Coming Soon
-              <ArrowIcon />
-            </a>
-          </div>
-
-          <div className="qr-panel">
-            <h3>Scan to Register</h3>
-
-            <div className="qr-wrap">
-              <AssetImage
-                src={ASSETS.qrCode}
-                alt="Registration QR code"
-                placeholderTitle="QR Code"
-                placeholderSubtitle="Add registration QR here"
-                className="qr-image"
-              />
-            </div>
-
-            <div className="partner-lockup">
-              <div className="partner-logo">
-                <AssetImage
-                  src={ASSETS.wingsLogo}
-                  alt="Wings Arena"
-                  placeholderTitle="Wings Arena"
-                  placeholderSubtitle="Logo"
-                  className="footer-logo"
-                />
+                  <div className="price-qr-wrap">
+                    <AssetImage
+                      src={ASSETS.qrCode}
+                      alt="Registration QR code"
+                      placeholderTitle="QR Code"
+                      placeholderSubtitle="Add registration QR here"
+                      className="qr-image"
+                    />
+                  </div>
+                </div>
               </div>
 
-              <span>+</span>
-
-              <div className="partner-logo">
-                <AssetImage
-                  src={ASSETS.driveLogo}
-                  alt="DRIVE Hockey Analytics"
-                  placeholderTitle="DRIVE"
-                  placeholderSubtitle="Logo"
-                  className="footer-logo"
-                />
-              </div>
-            </div>
+              <a
+                href={REGISTRATION_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="price-button"
+              >
+                Register Now
+                <ArrowIcon />
+              </a>
+            </article>
           </div>
         </div>
       </section>
