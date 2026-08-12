@@ -1590,6 +1590,14 @@ a {
     font-size: clamp(45px, 13vw, 65px);
   }
 
+  .schedule-section .section-heading {
+    text-align: center;
+  }
+
+  .schedule-section .section-heading h2 {
+    font-size: clamp(30px, 9vw, 40px);
+  }
+
   .sensor-feature {
     margin-top: 48px;
   }
