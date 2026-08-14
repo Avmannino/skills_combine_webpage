@@ -16,34 +16,6 @@ const ASSETS = {
   dataView: `${BASE_URL}data-view.png`,
 };
 
-const combineFacts = [
-  {
-    value: "3",
-    label: "Days",
-    detail: "Complete Labor Day weekend clinic",
-  },
-  {
-    value: "8",
-    label: "Hours On Ice",
-    detail: "Testing, training, and skill development",
-  },
-  {
-    value: "2",
-    label: "Hours Off Ice",
-    detail: "Performance-focused training",
-  },
-  {
-    value: "Daily",
-    label: "Analysis",
-    detail: "Performance data reviewed throughout the clinic",
-  },
-  {
-    value: "Day 3",
-    label: "Player Data",
-    detail: "Complete combine results provided",
-  },
-];
-
 const technicalMetrics = [
   "Top Speed",
   "Speed Bursts",
@@ -51,60 +23,6 @@ const technicalMetrics = [
   "Pace",
   "Acceleration",
   "Deceleration",
-];
-
-/*
-These are temporary performance categories.
-
-Once the final DRIVE measurement list is provided,
-replace these titles and descriptions with the exact
-metrics being captured during the clinic.
-*/
-
-const metrics = [
-  {
-    title: "Skating Speed",
-    text: "See how a player performs during high-speed skating efforts and evaluate their overall skating speed throughout the combine.",
-  },
-  {
-    title: "Acceleration",
-    text: "Measure how quickly a player can generate speed during structured skating and testing sessions.",
-  },
-  {
-    title: "Movement Profile",
-    text: "Use sensor data to better understand how a player moves during drills instead of relying only on visual observation.",
-  },
-  {
-    title: "Work Rate",
-    text: "Evaluate the intensity and volume of a player's movement throughout different portions of the clinic.",
-  },
-  {
-    title: "Skill Testing",
-    text: "Combine traditional hockey skill evaluation with objective performance measurements captured during testing.",
-  },
-  {
-    title: "Player Results",
-    text: "Finish the clinic with performance data that helps identify strengths, trends, and areas for continued development.",
-  },
-];
-
-const processSteps = [
-  {
-    title: "Wear the Sensors",
-    text: "Players are equipped with DRIVE performance sensors during designated combine sessions.",
-  },
-  {
-    title: "Perform",
-    text: "Players complete structured skating, skill, and testing sessions while performance information is captured.",
-  },
-  {
-    title: "Analyze",
-    text: "The collected measurements are translated into useful performance information throughout the clinic.",
-  },
-  {
-    title: "Get Your Data",
-    text: "Players receive their complete combine data on Day 3 to better understand how they performed.",
-  },
 ];
 
 const schedules = [
@@ -117,19 +35,19 @@ const schedules = [
         day: "Day 1",
         date: "Sat 9/5",
         time: "10:30am–11:30am",
-        type: "On-Ice Testing",
+        type: "Combine testing with data collection",
       },
       {
         day: "Day 2",
         date: "Sun 9/6",
         time: "10:30am–11:30am",
-        type: "Skills + Analysis",
+        type: "Skills practice with data collection",
       },
       {
         day: "Day 3",
         date: "Mon 9/7",
         time: "10:30am–11:30am",
-        type: "Performance Session",
+        type: "Personalized data report plus skills practice & game play",
       },
     ],
   },
@@ -142,19 +60,19 @@ const schedules = [
         day: "Day 1",
         date: "Sat 9/5",
         time: "11:40am–12:40pm",
-        type: "On-Ice Testing",
+        type: "Combine testing with data collection",
       },
       {
         day: "Day 2",
         date: "Sun 9/6",
         time: "11:40am–12:40pm",
-        type: "Skills + Analysis",
+        type: "Skills practice with data collection",
       },
       {
         day: "Day 3",
         date: "Mon 9/7",
         time: "11:40am–12:40pm",
-        type: "Performance Session",
+        type: "Personalized data report plus skills practice & game play",
       },
     ],
   },
@@ -274,34 +192,33 @@ function App() {
             </div>
           </div>
 
-          <div className="analytics-preview">
-            <div className="analytics-preview-top">
-              <div>
-                <h2>Your Game. Measured.</h2>
+          <div className="hero-visual">
+            <div className="analytics-preview">
+              <div className="analytics-preview-top">
+                <div>
+                  <h2>Your Game, Measured.</h2>
+                </div>
+              </div>
+
+              <AssetImage
+                src={ASSETS.dataView}
+                alt="DRIVE Hockey Analytics dashboard showing player tracking data"
+                placeholderTitle="Analytics Dashboard"
+                placeholderSubtitle="Add your DRIVE dashboard screenshot here"
+                className="hero-analytics-image"
+              />
+
+              <div className="hero-tagline">
+                <span>Test.</span>
+                <span>Train.</span>
+                <span>Compete.</span>
               </div>
             </div>
 
-            <div className="preview-metrics">
-              <div>
-                <strong>Speed</strong>
-              </div>
-
-              <div>
-                <strong>Acceleration</strong>
-              </div>
-
-              <div>
-                <strong>Movement</strong>
-              </div>
-            </div>
-
-            <AssetImage
-              src={ASSETS.dataView}
-              alt="DRIVE Hockey Analytics dashboard showing player tracking data"
-              placeholderTitle="Analytics Dashboard"
-              placeholderSubtitle="Add your DRIVE dashboard screenshot here"
-              className="hero-analytics-image"
-            />
+            <p className="hero-visual-note">
+              Exclusive performance-tracking technology,
+              only at Wings Arena.
+            </p>
           </div>
         </div>
       </section>
@@ -314,7 +231,7 @@ function App() {
         <div className="facts-heading page-width">
           <span>DRIVE Performance Tracking</span>
 
-          <h2>Every Player Is Measured On:</h2>
+          <h2>Every Player Is Measured For:</h2>
         </div>
 
         <div className="facts-grid page-width">
@@ -341,8 +258,7 @@ function App() {
           <div className="analytics-heading">
             <div>
               <h2>
-                Visualize your game
-                <br />
+                Visualize your game{" "}
                 <span>By the Numbers.</span>
               </h2>
             </div>
@@ -376,11 +292,29 @@ function App() {
             </div>
 
             <div className="sensor-copy">
-              <h3>
-                From what coaches see
-                <br />
-                to what the data shows.
-              </h3>
+              <h3>Get NHL-Level Data Analytics</h3>
+
+              <ul className="sensor-day-list">
+                <li>
+                  <strong>Day 1:</strong> Combine testing with
+                  data collection
+                </li>
+
+                <li>
+                  <strong>Day 2:</strong> Skills practice with
+                  data collection
+                </li>
+
+                <li>
+                  <strong>Day 3:</strong> Personalized data
+                  report plus skills practice & game play
+                </li>
+              </ul>
+
+              <p className="sensor-day-note">
+                *Must sign up for Day 1 or Day 2 for data
+                access
+              </p>
 
               <p>
                 Players wear DRIVE sensors during designated
@@ -397,77 +331,18 @@ function App() {
                 to build a complete picture of what happens
                 on the ice.
               </p>
-            </div>
-          </div>
 
-          <div className="metrics-heading-row">
-            <div>
-              <h3>What We Measure</h3>
-            </div>
-          </div>
-
-          <div className="metrics-list">
-            {metrics.map((metric) => (
-              <article
-                className="metric-row"
-                key={metric.title}
-              >
-                <h4>{metric.title}</h4>
-
-                <p>{metric.text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ==================================================
-          HOW IT WORKS
-      ================================================== */}
-
-      <section className="process-section section-spacing">
-        <div className="page-width">
-          <div className="center-section-heading">
-            <h2>How the Combine Works</h2>
-
-            <p>
-              The analytics process is integrated directly
-              into the clinic rather than treated as a
-              separate add-on.
-            </p>
-          </div>
-
-          <div className="process-grid">
-            {processSteps.map((step, index) => (
-              <article
-                className="process-card"
-                key={step.title}
-              >
-                <span className="process-number">
-                  {String(index + 1).padStart(2, "0")}
+              <div className="sensor-highlights">
+                <span>Open to all!</span>
+                <span>Goalies are free!</span>
+                <span>
+                  Coached by Wings Arena Professional
+                  Coaches
                 </span>
-
-                <h3>{step.title}</h3>
-
-                <p>{step.text}</p>
-              </article>
-            ))}
-          </div>
-
-          <div className="combine-stats">
-            {combineFacts.map((fact) => (
-              <div
-                className="combine-stat"
-                key={fact.label}
-              >
-                <strong>{fact.value}</strong>
-
-                <span>{fact.label}</span>
-
-                <p>{fact.detail}</p>
               </div>
-            ))}
+            </div>
           </div>
+
         </div>
       </section>
 
@@ -481,7 +356,7 @@ function App() {
       >
         <div className="page-width">
           <div className="section-heading">
-            <h2>Peewee & Bantam Schedule</h2>
+            <h2>CLINIC SCHEDULE</h2>
           </div>
 
           <div className="schedule-grid">
@@ -496,10 +371,6 @@ function App() {
 
                     <h3>{schedule.division}</h3>
                   </div>
-
-                  <span className="schedule-status">
-                    Labor Day Weekend
-                  </span>
                 </div>
 
                 <div className="session-list">
@@ -563,18 +434,8 @@ function App() {
               </div>
 
               <div className="price-card-body">
-                <div className="price-includes">
-                  <h4>Clinic Includes</h4>
-
-                  <p>3 days of clinic programming</p>
-                  <p>8 hours of on-ice activity</p>
-                  <p>2 hours of off-ice activity</p>
-                  <p>Daily performance analysis</p>
-                  <p>Player data provided on Day 3</p>
-                </div>
-
                 <div className="price-qr">
-                  <h4>Scan to Register</h4>
+                  <h4>Scan or Click to Register</h4>
 
                   <div className="price-qr-wrap">
                     <AssetImage
