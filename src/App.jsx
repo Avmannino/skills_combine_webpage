@@ -4,6 +4,8 @@ import "./App.css";
 const REGISTRATION_URL =
   "https://tms.ezfacility.com/OnlineRegistrations/Register.aspx?CompanyID=8390&GroupID=4099945";
 
+const DRIVE_URL = "https://drivehockey.com/";
+
 const BASE_URL = import.meta.env.BASE_URL;
 
 const ASSETS = {
@@ -14,16 +16,8 @@ const ASSETS = {
   sensorsThree: `${BASE_URL}sensor-three.png`,
   qrCode: `${BASE_URL}QR_Registration.png`,
   dataView: `${BASE_URL}data-view.png`,
+  metricsPdf: `${BASE_URL}DHA_Skating_Metrics_Explained.pdf`,
 };
-
-const technicalMetrics = [
-  "Top Speed",
-  "Speed Bursts",
-  "Agility",
-  "Pace",
-  "Acceleration",
-  "Deceleration",
-];
 
 const schedules = [
   {
@@ -166,6 +160,15 @@ function App() {
               <span>Clinic</span>
             </h1>
 
+            <div
+              className="hero-message-strip"
+              aria-label="Test, train, compete"
+            >
+              <span>Test.</span>
+              <span>Train.</span>
+              <span>Compete.</span>
+            </div>
+
             <div className="division-callout">
               <span>For</span>
               <strong>Peewee & Bantam Players</strong>
@@ -190,6 +193,55 @@ function App() {
                 <ArrowIcon />
               </a>
             </div>
+
+            <div className="drive-promo">
+              <div className="powered-by">
+                <span>Powered by</span>
+
+                <a
+                  href={DRIVE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Visit DRIVE Hockey Analytics"
+                >
+                  <AssetImage
+                    src={ASSETS.driveLogo}
+                    alt="DRIVE Hockey Analytics"
+                    placeholderTitle="DRIVE"
+                    placeholderSubtitle="Hockey Analytics"
+                    className="powered-by-logo"
+                  />
+                </a>
+              </div>
+
+              <a
+                className="drive-cta"
+                href={DRIVE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="drive-cta-copy">
+                  <strong>
+                    Explore{" "}
+                    <AssetImage
+                      src={ASSETS.driveLogo}
+                      alt="DRIVE"
+                      placeholderTitle="DRIVE"
+                      className="drive-cta-logo"
+                    />{" "}
+                    Hockey Analytics
+                  </strong>
+                  <span>
+                    See the technology behind the data and learn
+                    how DRIVE measures on-ice performance.
+                  </span>
+                </div>
+
+                <span className="drive-cta-arrow">
+                  <ArrowIcon />
+                </span>
+              </a>
+            </div>
           </div>
 
           <div className="hero-visual">
@@ -200,6 +252,21 @@ function App() {
                 </div>
               </div>
 
+              <a
+                className="metrics-pdf-link"
+                href={ASSETS.metricsPdf}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="metrics-pdf-copy">
+                  Click here to See the 9 key metrics you’ll
+                  receive, why they matter, and how your results
+                  compare to age-based percentile benchmarks.
+                </span>
+
+                <ArrowIcon />
+              </a>
+
               <AssetImage
                 src={ASSETS.dataView}
                 alt="DRIVE Hockey Analytics dashboard showing player tracking data"
@@ -207,42 +274,13 @@ function App() {
                 placeholderSubtitle="Add your DRIVE dashboard screenshot here"
                 className="hero-analytics-image"
               />
-
-              <div className="hero-tagline">
-                <span>Test.</span>
-                <span>Train.</span>
-                <span>Compete.</span>
-              </div>
             </div>
 
-            <p className="hero-visual-note">
-              Exclusive performance-tracking technology,
-              only at Wings Arena.
-            </p>
+            <div className="technology-callout">
+              <span>The ONLY rink in the Tri-State Area</span>
+              <strong>with this cutting-edge technology</strong>
+            </div>
           </div>
-        </div>
-      </section>
-
-      {/* ==================================================
-          TECHNICAL METRICS
-      ================================================== */}
-
-      <section className="facts-section">
-        <div className="facts-heading page-width">
-          <span>DRIVE Performance Tracking</span>
-
-          <h2>Every Player Is Measured For:</h2>
-        </div>
-
-        <div className="facts-grid page-width">
-          {technicalMetrics.map((metric) => (
-            <article
-              className="fact"
-              key={metric}
-            >
-              <h3>{metric}</h3>
-            </article>
-          ))}
         </div>
       </section>
 
@@ -331,15 +369,6 @@ function App() {
                 to build a complete picture of what happens
                 on the ice.
               </p>
-
-              <div className="sensor-highlights">
-                <span>Open to all!</span>
-                <span>Goalies are free!</span>
-                <span>
-                  Coached by Wings Arena Professional
-                  Coaches
-                </span>
-              </div>
             </div>
           </div>
 
@@ -357,6 +386,14 @@ function App() {
         <div className="page-width">
           <div className="section-heading">
             <h2>CLINIC SCHEDULE</h2>
+          </div>
+
+          <div className="schedule-highlights">
+            <span>Open to all!</span>
+            <span>Goalies are free!</span>
+            <span>
+              Coached by Wings Arena Professional Coaches
+            </span>
           </div>
 
           <div className="schedule-grid">
@@ -418,6 +455,14 @@ function App() {
                 <span>{pricing.age}</span>
 
                 <h3>{pricing.division}</h3>
+
+                <p className="registration-limit">
+                  <span
+                    className="limit-dot"
+                    aria-hidden="true"
+                  />
+                  Limited to first 25 spots
+                </p>
               </div>
 
               <div className="price-tiers">
