@@ -17,6 +17,15 @@ const ASSETS = {
   qrCode: `${BASE_URL}QR_Registration.png`,
   dataView: `${BASE_URL}data-view.png`,
   metricsPdf: `${BASE_URL}DHA_Skating_Metrics_Explained.pdf`,
+  goalieCoach: `${BASE_URL}miro.avif`,
+};
+
+const GOALIE_COACH = {
+  name: "Miro Recicar",
+  instagramUrl: "https://www.instagram.com/nyc_r_goaltending",
+  instagramHandle: "@nyc_r_goaltending",
+  websiteUrl: "https://www.nycrgoaltending.com/",
+  websiteLabel: "nycrgoaltending.com",
 };
 
 const schedules = [
@@ -123,6 +132,62 @@ function ArrowIcon() {
     >
       <path
         d="M5 12h14M13 6l6 6-6 6"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function InstagramIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      className="inline-icon"
+    >
+      <rect
+        x="3"
+        y="3"
+        width="18"
+        height="18"
+        rx="5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+      />
+
+      <circle
+        cx="12"
+        cy="12"
+        r="4.2"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+      />
+
+      <circle
+        cx="17.4"
+        cy="6.6"
+        r="1.1"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+function LinkIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      className="inline-icon"
+    >
+      <path
+        d="M9.5 14.5 14.5 9.5M11 7l1.6-1.6a3.5 3.5 0 0 1 5 5L16 12M13 17l-1.6 1.6a3.5 3.5 0 0 1-5-5L8 12"
         fill="none"
         stroke="currentColor"
         strokeWidth="1.8"
@@ -390,7 +455,7 @@ function App() {
 
           <div className="schedule-highlights">
             <span>Open to all!</span>
-            <span>Goalies are free!</span>
+            <span>Limited Spots Available</span>
             <span>
               Coached by Wings Arena Professional Coaches
             </span>
@@ -432,6 +497,69 @@ function App() {
                 </div>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ==================================================
+          GOALIE COACHING
+      ================================================== */}
+
+      <section className="goalie-section section-spacing">
+        <div className="page-width goalie-layout">
+          <div className="goalie-photo">
+            <AssetImage
+              src={ASSETS.goalieCoach}
+              alt={`Coach ${GOALIE_COACH.name}`}
+              placeholderTitle="Coach Photo"
+              placeholderSubtitle="Add goalie coach photo here"
+              className="goalie-photo-img"
+            />
+          </div>
+
+          <div className="goalie-copy">
+            <span className="goalie-eyebrow">
+              Goalie Development
+            </span>
+
+            <h2>
+              Goalie Coaching with
+              <br />
+              {GOALIE_COACH.name}
+            </h2>
+
+            <p>
+              On Sunday and Monday, Coach {GOALIE_COACH.name}{" "}
+              joins the clinic to work exclusively with
+              goalies. Each day starts with 20 minutes
+              dedicated one-on-one with{" "}
+              {GOALIE_COACH.name.split(" ")[0]}, then goalies
+              join the rest of the group for game-like
+              situation drills, coached by{" "}
+              {GOALIE_COACH.name.split(" ")[0]}.
+            </p>
+
+            <div className="goalie-links">
+              <a
+                className="goalie-link"
+                href={GOALIE_COACH.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <InstagramIcon />
+                <span>{GOALIE_COACH.instagramHandle}</span>
+              </a>
+
+              <a
+                className="goalie-link"
+                href={GOALIE_COACH.websiteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <LinkIcon />
+                <span>{GOALIE_COACH.websiteLabel}</span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
